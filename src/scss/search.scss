@@ -116,3 +116,27 @@ a {
     display: none;
     z-index: 1035;
 } 
+
+.add-button {
+    background-color: #4E75FF;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 5px;
+    border: none;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    
+} 
+
+.add-button:hover {
+    background-color: #6C8CFF;
+}
+
+.container-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
