@@ -117,7 +117,7 @@ a {
     z-index: 1035;
 } 
 
-.add-button {
+.add-button  {
     background-color: #4E75FF;
     color: white;
     padding: 10px 20px;
@@ -126,17 +126,28 @@ a {
     border-radius: 5px;
     border: none;
     margin-top: 20px;
-    margin-bottom: 10px;
-    
+    margin-bottom: 20px;
 } 
 
 .add-button:hover {
     background-color: #6C8CFF;
 }
 
-.container-btn {
+.load-more-container {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
+/* .is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+} 
+ */
+
+.js-loader {
+    display: flex;
+    justify-content: center;
+}

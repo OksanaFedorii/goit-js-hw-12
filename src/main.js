@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const galleryEl = document.querySelector('.js-gallery');
     const loaderEl = document.querySelector('.js-loader');
 
-    form.addEventListener('submit', function (event) {
+    form.addEventListener('submit', async function (event) {
         event.preventDefault();
         const input = document.querySelector('.js-search-input');
         const searchQuery = input.value.trim();
@@ -30,33 +30,31 @@ document.addEventListener('DOMContentLoaded', function () {
         galleryEl.innerHTML = '';
         loaderEl.classList.remove('is-hidden');
 
-        fetchPhotosByQuery(searchQuery)
-            .then(data => {
-                if (data.totalHits === 0) {
-                    iziToast.show({
-                        message: 'Sorry, there are no images for this query',
-                        position: 'topRight',
-                        timeout: 2000,
-                        color: 'red',
-                    });
-                } else {
-                    galleryEl.innerHTML = createGalleryItemMarkup(data.hits);
-                    initializeLightbox();
-                }
-            })
-            .catch(error => {
-                console.error('Fetch error:', error);
+        try {
+            const data = await fetchPhotosByQuery(searchQuery);
+            if (data.totalHits === 0) {
                 iziToast.show({
-                    message: 'Failed to load images',
+                    message: 'Sorry, there are no images for this query',
                     position: 'topRight',
                     timeout: 2000,
                     color: 'red',
                 });
-            })
-            .finally(() => {
-                input.value = '';
-                loaderEl.classList.add('is-hidden');
+            } else {
+                galleryEl.innerHTML = createGalleryItemMarkup(data.hits);
+                initializeLightbox();
+            }
+        } catch (error) {
+            console.error('Fetch error:', error);
+            iziToast.show({
+                message: 'Failed to load images',
+                position: 'topRight',
+                timeout: 2000,
+                color: 'red',
             });
+        } finally {
+            input.value = '';
+            loaderEl.classList.add('is-hidden');
+        }
     });
 });
 
