@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "copy-css": "cp node_modules/simplelightbox/dist/simple-lightbox.min.css public/assets/css/ && cp node_modules/izitoast/dist/css/iziToast.min.css public/assets/css/",
     "build": "vite build --base=/vanilla-app-template/",
     "preview": "vite preview"
   },
